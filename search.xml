@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>lucene基本使用</title>
+    <url>/2020/03/30/lucene%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h3 id="lucene基本使用"><a href="#lucene基本使用" class="headerlink" title="lucene基本使用"></a>lucene基本使用</h3><p>lucene主要用于对非结构化数据的解析，常见的非结构化数据例如：邮件、doc文档、pdf文档等等，lucene技术就是对这些非结构化数据解</p>
+]]></content>
+      <categories>
+        <category>学习随笔</category>
+      </categories>
+      <tags>
+        <tag>lucene</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>将jar包手动添加到maven仓库</title>
+    <url>/2020/03/30/%E5%B0%86jar%E5%8C%85%E6%89%8B%E5%8A%A8%E6%B7%BB%E5%8A%A0%E5%88%B0maven%E4%BB%93%E5%BA%93/</url>
+    <content><![CDATA[<h3 id="将jar包手动添加到maven仓库"><a href="#将jar包手动添加到maven仓库" class="headerlink" title="将jar包手动添加到maven仓库"></a>将jar包手动添加到maven仓库</h3><p><strong>1、语法</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mvn install:install-file -Dfile&#x3D;jar包的位置 -DgroupId&#x3D;jar包设置的groupId -DartifactId&#x3D;jar包设置的artifactId -Dversion&#x3D;jar包版本 -Dpackaging&#x3D;jar -DgeneratePom&#x3D;true</span><br></pre></td></tr></table></figure>
+
+<p><strong>2、示例</strong></p>
+<p>例如： 将D盘下的的ojdbc6.jar导入maven仓库，在任意位置打开CMD，然后输入下面的命令</p>
+<p><code>注意：</code>网上的ojdbc14、ojdbc6后面的14和6表示的是所需jdk的最低版本，ojdbc6是Oracle11g后才更新的驱动包，比ojdbc14要新，所以下面设置版本的时候我使用的是oracle数据库的版本作为驱动的版本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mvn install:install-file -Dfile&#x3D;D:\ojdbc6.jar -DgroupId&#x3D;com.oracle -DartifactId&#x3D;ojdbc6 -Dversion&#x3D;11.2.0.1.0 -Dpackaging&#x3D;jar -DgeneratePom&#x3D;true</span><br></pre></td></tr></table></figure>
+
+<p>当看到<code>BUILD SUCCESS</code>则表示安装成功</p>
+<img src="/2020/03/30/%E5%B0%86jar%E5%8C%85%E6%89%8B%E5%8A%A8%E6%B7%BB%E5%8A%A0%E5%88%B0maven%E4%BB%93%E5%BA%93/1.png" class="">
+
+<p>但从安装路径上看默认是安装到C盘的用户目录下，但通常我们的本地仓库安装在其他的路径，如果想要安装到指定的仓库，只需要修改maven的配置文件，然后重新执行上面的命令即可</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">#找到maven的安装路径，然后找到conf/settings.xml文件，打开找到<span class="tag">&lt;<span class="name">localRepository</span>&gt;</span><span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span>标签，然后将里面的路径修改成我们指定的仓库路径</span><br><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:/devSoftware/maven/apache-maven-3.3.9/repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>学习随笔</category>
+      </categories>
+      <tags>
+        <tag>maven</tag>
+        <tag>工具使用</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AOP的日志获取</title>
     <url>/2020/03/25/AOP%E7%9A%84%E6%97%A5%E5%BF%97/</url>
     <content><![CDATA[<p>在学习系统权限权限项目时，需要将用户在web层的请求操作的信息提取出来，作为日志信息存储到数据库中，整体的思路就是对web层的所有实例对象的所有方法做一个AOP切面，当Spring MVC前端控制器调用实例对象内的方法时，就会触发切面对应的通知类，并执行里面的通知方法</p>
